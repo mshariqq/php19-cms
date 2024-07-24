@@ -4,7 +4,7 @@
     <div class="row justify-content-between align-items-between">
 
         <div class="col-12 text-center">
-            <img width="auto" height="200px" class="rounded" src="https://php19.com/wp-content/uploads/2024/02/dp.png" alt="">
+            <img width="auto" height="200px" alt="author dp" class="rounded" src="{{$page->user->photo}}" alt="">
             <h5 class="text-light mt-3 font-weight-bold text-capitalize">{{$page->user->name}}</h5>
             <p class="text-grey">
                 {!! $page->user->bio !!}
@@ -62,7 +62,5 @@
     @else 
     <p class="text-warning">Author not found <br> <i style="font-size: 2rem" class="fa fa-chain-broken" aria-hidden="true"></i>  </p>
     @endif
-
-
 
 </div>

@@ -9,3 +9,11 @@
 .upwork-color{
     color: #108a00;
 }
+
+a {
+    text-decoration: none !important;
+}
+
+.tags:hover {
+    text-decoration: underline !important;
+}
