@@ -11,10 +11,10 @@
     </div>
     <div class="card-body">
         <div class="row">
-            <div class="col-md-3">
-                <img height="auto" width="100%" src="{{$post->thumbnail}}" alt="{{$post->keywords}}">
+            <div class="col-md-5">
+                <img height="100%" width="100%" src="{{$post->thumbnail}}" alt="{{$post->keywords}}">
             </div>
-            <a href="{{route('posts.details', $post->slug)}}" class="col-md-9">
+            <a href="{{route('posts.details', $post->slug)}}" class="col-md-7">
                
                 <b class="text-primary">{{$post->name}}</b>
                 <br>

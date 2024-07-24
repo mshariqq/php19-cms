@@ -9,18 +9,16 @@
           <li class="nav-item">
             <a class="nav-link " aria-current="page" href="{{route('homepage')}}">Home</a>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Posts
-            </a>
-            <ul class="dropdown-menu">
-              {{-- <li><a class="dropdown-item" href="{{route('admin.dashboard')}}">Dashboard</a></li> --}}
-              {{-- <li><a class="dropdown-item" href="{{route('admin.posts')}}">Posts</a></li> --}}
-
-              {{-- <li><a class="dropdown-item" href="{{route('admin.pages')}}">Pages</a></li> --}}
-            
-            </ul>
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="{{route('categories.all')}}">Categories</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="{{route('tags.all')}}">Tags</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="{{route('categories.posts', 'blog')}}">Blog</a>
+          </li>
+          
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Pages
@@ -34,13 +32,14 @@
                         {{-- Skip rendering for '/' slug --}}
                         @continue
                     @else 
-                        <li><a class="dropdown-item text-uppercase" href="{{ url('page/' . $item->slug) }}">{{ $item->name }}</a></li>
+                        <li><a class="dropdown-item text-capitalize" href="{{ url('pages/' . $item->slug) }}">{{ $item->name }}</a></li>
                     @endif
                 @endforeach
         
             
             </ul>
           </li>
+
           <li class="nav-item">
             <a class="nav-link " aria-current="page" href="{{route('homepage')}}">Support</a>
           </li>
@@ -51,10 +50,10 @@
               Admin Tools
             </a>
             <ul class="dropdown-menu">
-              {{-- <li><a class="dropdown-item" href="{{route('admin.dashboard')}}">Dashboard</a></li> --}}
+              <li><a class="dropdown-item" href="{{route('dashboard')}}">Dashboard</a></li>
               {{-- <li><a class="dropdown-item" href="{{route('admin.posts')}}">Posts</a></li> --}}
 
-              {{-- <li><a class="dropdown-item" href="{{route('admin.pages')}}">Pages</a></li> --}}
+              <li><a class="dropdown-item" href="{{route('admin.pages')}}">Pages</a></li>
             
             </ul>
           </li>

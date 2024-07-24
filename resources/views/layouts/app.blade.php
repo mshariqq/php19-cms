@@ -21,6 +21,7 @@
 
         <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css')}}">
         <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}">
+        {{-- <link rel="stylesheet" href="{{ asset('assets/ck/contents.css')}}"> --}}
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />        
         <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
     </head>
@@ -28,10 +29,21 @@
 
         <div class="container-fluid">
             @include('inc/navbar')
+
+            @if (session('success'))
+                <div class="alert alert-success" role="alert">
+                    <strong>{{session('success')}}</strong>
+                </div>
+            @elseif(session('error'))
+                <div class="alert alert-danger" role="alert">
+                    <strong>{{session('error')}}</strong>
+                </div>
+            @endif
             @yield('content')
         </div>
 
         <script src="{{ asset('assets/js/bootstrap.bundle.js') }}"></script>
-
+        <script src="{{ asset('assets/ck/ckeditor.js') }}"></script>
+        @yield('scripts')
     </body>
 </html>

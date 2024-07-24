@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PageController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -11,6 +13,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'home'])->name('homepage');
 
 // Pages
+Route::get('/pages', function(){
+    return redirect()->route('homepage');
+})->name('posts.all');
+Route::get('/pages/{slug}', [PageController::class, 'get_page'])->name('pages.get');
+
 
 // Posts
 Route::get('/posts', [PostController::class, 'all'])->name('posts.all');
@@ -40,6 +47,18 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+// Admin
+Route::middleware('auth')->group(function () {
+    Route::get('/admin/pages', [AdminController::class, 'pages'])->name('admin.pages');
+    Route::get('/admin/pages/new', [AdminController::class, 'new_page'])->name('admin.pages.new');
+    Route::post('/admin/pages/store', [AdminController::class, 'store_page'])->name('admin.pages.store');
+    Route::get('/admin/pages/delete/{id}', [AdminController::class, 'del_page'])->name('admin.pages.delete');
+    Route::get('/admin/pages/edit/{id}', [AdminController::class, 'edit_page'])->name('admin.pages.edit');
+    Route::post('/admin/pages/update/{id}', [AdminController::class, 'update_page'])->name('admin.pages.update');
+
+    // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 require __DIR__.'/auth.php';
