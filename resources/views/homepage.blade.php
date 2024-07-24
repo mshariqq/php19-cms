@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('title', $page->name)
+@section('description', $page->meta_desc)
+@section('keywords', $page->meta_kw)
+@section('thumbnail', $page->thumbnail)
 @section('content')
 
 <div class="container-fluid">
