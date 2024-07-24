@@ -40,6 +40,13 @@
                 </div>
             @endif
             @yield('content')
+
+
+            <footer class="row">
+                <div class="col-md-12">
+                    <p class="text-center pt-4 pb-4">2024 - Full Website Coded by <a href="https://www.shariqq.com">Shariqq</a> in 24 hours</p>
+                </div>
+            </footer>
         </div>
 
         <script src="{{ asset('assets/js/bootstrap.bundle.js') }}"></script>

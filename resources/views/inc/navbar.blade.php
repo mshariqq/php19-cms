@@ -51,10 +51,11 @@
             </a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="{{route('dashboard')}}">Dashboard</a></li>
-              {{-- <li><a class="dropdown-item" href="{{route('admin.posts')}}">Posts</a></li> --}}
 
               <li><a class="dropdown-item" href="{{route('admin.pages')}}">Pages</a></li>
-            
+              <li><a class="dropdown-item" href="{{route('admin.categories')}}">Categories</a></li>
+              <li><a class="dropdown-item" href="{{route('admin.tags')}}">Tags</a></li>
+
             </ul>
           </li>
           @endif

@@ -42,8 +42,8 @@
                                     <td>
                                         <a href="{{ url('pages/' . $item->slug) }}">{{$item->name}}</a>
                                     </td>
-                                    <td>{{$item->slug}}</td>
-                                    <td>{{$item->views}}</td>
+                                    <td class="text-muted">{{$item->slug}}</td>
+                                    <td> <i class="fa fa-eye text-muted" aria-hidden="true"></i> {{$item->views}}</td>
                                     <td>
                                         <a href="{{route('admin.pages.edit', $item->id)}}" class="btn btn-sm btn-primary">
                                         <i class="fa fa-pencil" aria-hidden="true"></i></a>

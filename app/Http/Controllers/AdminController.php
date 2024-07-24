@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Page;
+use App\Models\Category;
+use App\Models\Tag;
+use App\Models\Post;
 
 class AdminController extends Controller
 {
@@ -11,6 +14,16 @@ class AdminController extends Controller
     public function pages(){
         $pages  = Page::paginate('20');
         return view('admin.pages', compact('pages'));
+    }
+
+    public function categories(){
+        $cats  = Category::paginate('20');
+        return view('admin.categories', compact('cats'));
+    }
+
+    public function tags(){
+        $cats  = Tag::paginate('20');
+        return view('admin.tags', compact('cats'));
     }
 
     public function new_page(){
@@ -37,6 +50,35 @@ class AdminController extends Controller
         }
     }
 
+    public function store_categories(Request $request){
+
+        $page = new Category();
+        $page->name = $request->tag;
+        $page->slug = $request->slug ;
+       
+        if($page->save()){
+            return redirect()->route('admin.categories')->with('success', 'Category created');
+        }else{
+            return redirect()->route('admin.categories')->with('error', 'Something went wrong');
+
+        }
+    }
+
+
+    public function store_tags(Request $request){
+
+        $page = new Tag();
+        $page->tag = $request->tag;
+        $page->slug = $request->slug ;
+       
+        if($page->save()){
+            return redirect()->route('admin.tags')->with('success', 'TAG created');
+        }else{
+            return redirect()->route('admin.tags')->with('error', 'Something went wrong');
+
+        }
+    }
+
     public function del_page($id){
         $page = Page::find($id);
         if($page){
@@ -45,6 +87,32 @@ class AdminController extends Controller
 
         }else{
             abort('404', 'Page not found');
+        }
+    }
+
+    public function del_tags($id){
+        $page = Tag::find($id);
+        if($page){
+            $page->delete(); 
+            return redirect()->route('admin.tags')->with('success', 'Tag Deleted');
+
+        }else{
+            abort('404', 'Tag not found');
+        }
+    }
+
+    public function del_categories($id){
+        $page = Category::find($id);
+        if($page){
+            $post = Post::where('category_id', $id)->first();
+            if($post){
+                return redirect()->route('admin.categories')->with('error', 'POSTS are attached, cant delete -> ' . $page->name);
+            }
+            $page->delete();
+            return redirect()->route('admin.categories')->with('success', 'Category Deleted');
+
+        }else{
+            abort('404', 'Category not found');
         }
     }
 

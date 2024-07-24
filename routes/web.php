@@ -58,6 +58,21 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/pages/edit/{id}', [AdminController::class, 'edit_page'])->name('admin.pages.edit');
     Route::post('/admin/pages/update/{id}', [AdminController::class, 'update_page'])->name('admin.pages.update');
 
+    Route::get('/admin/categories', [AdminController::class, 'categories'])->name('admin.categories');
+    Route::get('/admin/categories/edit/{id}', [AdminController::class, 'edit_categories'])->name('admin.categories.edit');
+    Route::get('/admin/categories/delete/{id}', [AdminController::class, 'del_categories'])->name('admin.categories.delete');
+    Route::post('/admin/categories/store', [AdminController::class, 'store_categories'])->name('admin.categories.store');
+
+    Route::get('/admin/categories', [AdminController::class, 'categories'])->name('admin.categories');
+    Route::get('/admin/categories/edit/{id}', [AdminController::class, 'edit_categories'])->name('admin.categories.edit');
+    Route::get('/admin/categories/delete/{id}', [AdminController::class, 'del_categories'])->name('admin.categories.delete');
+    Route::post('/admin/categories/store', [AdminController::class, 'store_categories'])->name('admin.categories.store');
+
+    Route::get('/admin/tags', [AdminController::class, 'tags'])->name('admin.tags');
+    Route::get('/admin/tags/edit/{id}', [AdminController::class, 'edit_tags'])->name('admin.tags.edit');
+    Route::get('/admin/tags/delete/{id}', [AdminController::class, 'del_tags'])->name('admin.tags.delete');
+    Route::post('/admin/tags/store', [AdminController::class, 'store_tags'])->name('admin.tags.store');
+
     // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
