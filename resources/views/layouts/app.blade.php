@@ -12,12 +12,18 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
         <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css')}}">
+        <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />        
         <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
     </head>
-    <body class="font-sans antialiased">
-        @yield('content')
+    <body class="bg-light">
 
-        <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+        <div class="container">
+            @include('inc/navbar')
+            @yield('content')
+        </div>
+
+        <script src="{{ asset('assets/js/bootstrap.bundle.js') }}"></script>
 
     </body>
 </html>
