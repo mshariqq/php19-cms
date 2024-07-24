@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\TagController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -12,14 +14,14 @@ Route::get('/', [HomeController::class, 'home'])->name('homepage');
 
 // Posts
 Route::get('/posts', [PostController::class, 'all'])->name('posts.all');
-Route::get('/posts/{slug}', [PostController::class, 'find'])->name('posts.post');
+Route::get('/posts/{slug}', [PostController::class, 'find'])->name('posts.details');
 Route::get('/posts/{id}/new-like', [PostController::class, 'new_like'])->name('posts.new_like');
 Route::post('/posts/{id}/new-comment', [PostController::class, 'new_comment'])->name('posts.new_comment');
 
 
 // Categories
-Route::get('/catgories', [CategoryController::class, 'all'])->name('categories.all');
-Route::get('/catgories/{slug}', [CategoryController::class, 'posts'])->name('categories.posts');
+Route::get('/categories', [CategoryController::class, 'all'])->name('categories.all');
+Route::get('/categories/{slug}', [CategoryController::class, 'posts'])->name('categories.posts');
 
 
 // Tags

@@ -2,6 +2,10 @@
     background-color: #000;
 }
 
+.bg-dark-light {
+    background-color: #333;
+}
+
 .text-grey {
     color: #aaa;
 }
@@ -16,4 +20,8 @@ a {
 
 .tags:hover {
     text-decoration: underline !important;
+}
+
+.breadcrumb-item+.breadcrumb-item::before{
+    color: #eee !important
 }

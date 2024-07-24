@@ -12,7 +12,7 @@
 
 
 
-        <div class="col-md-7 bg-dark text-white pt-4 pb-5">
+        <div class="col-md-7 bg-dark-light text-white pt-4 pb-5">
            
                 <div class="card bg-black text-white">
                     <div class="card-body">
@@ -32,6 +32,10 @@
 
                 <h5>Latest Posts</h5>
                 @include('inc/post-card')
+
+                <div class="d-flex justify-content-center mt-4">
+                    {{$posts->links('pagination::bootstrap-4')}}
+                </div>
                 
            
         </div>
