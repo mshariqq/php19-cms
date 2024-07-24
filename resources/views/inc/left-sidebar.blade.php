@@ -16,7 +16,7 @@
         $tags = App\Models\Tag::all();
     @endphp
     @foreach ($tags as $item)
-        <a href="{{route('tags.posts', $item->slug)}}" class="text-primary mb-3 tags btn btn-sm btn-light"># {{$item->tag}}</a>
+        <a href="{{route('tags.posts', $item->slug)}}" class="text-primary mb-2 tags btn btn-sm btn-light"># {{$item->tag}}</a>
         <br>
     @endforeach
    

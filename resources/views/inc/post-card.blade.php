@@ -28,7 +28,10 @@
                 <span class="badge badge-pill bg-dark"> <i class="fa fa-download" aria-hidden="true"></i> {{$post->downloads}} </span>
                 <br>
                 <span class="badge badge-pill text-dark bg-warning">{{$post->category->name}}</span>
-                <span class="badge badge-pill text-white bg-primary">{{$post->tag->tag}}</span>
+                @foreach ($post->tags as $item)
+                <span class="badge badge-pill text-white bg-primary">#{{$item->tag}}</span>
+
+                @endforeach
 
                 
             </a>

@@ -26,8 +26,12 @@ class Post extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function tag()
+
+    /**
+     * Get the tags associated with the post.
+     */
+    public function tags()
     {
-        return $this->belongsTo(Tag::class);
+        return $this->belongsToMany(Tag::class, 'post_tag', 'post_id', 'tag_id');
     }
 }
