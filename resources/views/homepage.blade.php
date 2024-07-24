@@ -2,17 +2,19 @@
 
 @section('content')
 
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-md-3 bg-black">
-            <p>ded</p>
+        @include('inc/left-sidebar')
+
+
+
+        <div class="col-md-7 bg-dark">
+            
         </div>
-        <div class="col-md-5 bg-dark">
-            <p>ll</p>
-        </div>
-        <div class="col-md-4 bg-black">
-            <p>HI</p>
-        </div>
+
+
+
+        @include('inc/right-sidebar')
     </div>
 </div>
 @endsection

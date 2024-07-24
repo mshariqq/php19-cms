@@ -9,8 +9,40 @@
           <li class="nav-item">
             <a class="nav-link " aria-current="page" href="{{route('homepage')}}">Home</a>
           </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Posts
+            </a>
+            <ul class="dropdown-menu">
+              {{-- <li><a class="dropdown-item" href="{{route('admin.dashboard')}}">Dashboard</a></li> --}}
+              {{-- <li><a class="dropdown-item" href="{{route('admin.posts')}}">Posts</a></li> --}}
+
+              {{-- <li><a class="dropdown-item" href="{{route('admin.pages')}}">Pages</a></li> --}}
+            
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Pages
+            </a>
+            <ul class="dropdown-menu">
+                @php
+                    $pages = App\Models\Page::select('name', 'slug')->where('status', 'published')->get();
+                @endphp
+                @foreach ($pages as $item)
+                    @if($item->slug == '/')
+                        {{-- Skip rendering for '/' slug --}}
+                        @continue
+                    @else 
+                        <li><a class="dropdown-item text-uppercase" href="{{ url('page/' . $item->slug) }}">{{ $item->name }}</a></li>
+                    @endif
+                @endforeach
+        
+            
+            </ul>
+          </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+            <a class="nav-link " aria-current="page" href="{{route('homepage')}}">Support</a>
           </li>
           
           @if(auth()->user() && auth()->user()->role == 'admin')
@@ -19,10 +51,11 @@
               Admin Tools
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
+              {{-- <li><a class="dropdown-item" href="{{route('admin.dashboard')}}">Dashboard</a></li> --}}
+              {{-- <li><a class="dropdown-item" href="{{route('admin.posts')}}">Posts</a></li> --}}
+
+              {{-- <li><a class="dropdown-item" href="{{route('admin.pages')}}">Pages</a></li> --}}
+            
             </ul>
           </li>
           @endif

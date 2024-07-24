@@ -18,7 +18,7 @@
     </head>
     <body class="bg-light">
 
-        <div class="container">
+        <div class="container-fluid">
             @include('inc/navbar')
             @yield('content')
         </div>
