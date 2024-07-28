@@ -27,7 +27,7 @@
                 <br>
                 <br>
                 
-                @include('inc/post-card')
+                @include('inc.post-card', ['decrease_thumbnail' => 'decrease-thumbnail'])
 
                 <div class="d-flex justify-content-center mt-4">
                     {{$posts->links('pagination::bootstrap-4')}}

@@ -16,6 +16,11 @@ class AdminController extends Controller
         return view('admin.pages', compact('pages'));
     }
 
+    public function posts(){
+        $pages  = Post::paginate('20');
+        return view('admin.posts', compact('pages'));
+    }
+
     public function categories(){
         $cats  = Category::paginate('20');
         return view('admin.categories', compact('cats'));
@@ -29,6 +34,12 @@ class AdminController extends Controller
     public function new_page(){
         $pages  = Page::select('name', 'id')->get();
         return view('admin.pages-new', compact('pages'));
+    }
+
+    public function new_posts(){
+        $cats  = Category::select('name', 'id')->get();
+        $tags = Tag::all();
+        return view('admin.posts-new', compact('cats', 'tags'));
     }
 
     public function store_page(Request $request){
@@ -48,6 +59,32 @@ class AdminController extends Controller
             return redirect()->route('admin.pages')->with('error', 'Something went wrong');
 
         }
+    }
+
+    public function store_posts(Request $request){
+
+        // dd($request->all());
+
+        $page = new Post();
+        $page->name = $request->name;
+        $page->slug = $request->slug ;
+        $page->description = $request->description;
+        $page->keywords = $request->keywords;
+        $page->content = $request->content;
+        $page->status = $request->status;
+        $page->category_id = $request->category_id;
+        $page->user_id = auth()->user()->id;
+
+        if($page->save()){
+                    // Sync tags with the post
+                    $page->tags()->sync($request->tags);
+                    return redirect()->route('admin.posts')->with('success', 'Post created');
+        }else{
+            return redirect()->route('admin.posts')->with('error', 'Something went wrong');
+
+        }
+
+
     }
 
     public function store_categories(Request $request){
@@ -84,6 +121,17 @@ class AdminController extends Controller
         if($page){
             $page->delete();
             return redirect()->route('admin.pages')->with('success', 'Page Deleted');
+
+        }else{
+            abort('404', 'Page not found');
+        }
+    }
+
+    public function del_posts($id){
+        $page = Post::find($id);
+        if($page){
+            $page->delete();
+            return redirect()->route('admin.posts')->with('success', 'Post Deleted');
 
         }else{
             abort('404', 'Page not found');

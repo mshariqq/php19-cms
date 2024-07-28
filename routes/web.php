@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\PostController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -21,7 +22,7 @@ Route::get('/pages/{slug}', [PageController::class, 'get_page'])->name('pages.ge
 
 // Posts
 Route::get('/posts', [PostController::class, 'all'])->name('posts.all');
-Route::get('/posts/{slug}', [PostController::class, 'find'])->name('posts.details');
+Route::get('/posts/{slug}', [PostController::class, 'get_post'])->name('posts.get');
 Route::get('/posts/{id}/new-like', [PostController::class, 'new_like'])->name('posts.new_like');
 Route::post('/posts/{id}/new-comment', [PostController::class, 'new_comment'])->name('posts.new_comment');
 
@@ -57,6 +58,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/pages/delete/{id}', [AdminController::class, 'del_page'])->name('admin.pages.delete');
     Route::get('/admin/pages/edit/{id}', [AdminController::class, 'edit_page'])->name('admin.pages.edit');
     Route::post('/admin/pages/update/{id}', [AdminController::class, 'update_page'])->name('admin.pages.update');
+
+    Route::get('/admin/posts', [AdminController::class, 'posts'])->name('admin.posts');
+    Route::get('/admin/posts/new', [AdminController::class, 'new_posts'])->name('admin.posts.new');
+    Route::post('/admin/posts/store', [AdminController::class, 'store_posts'])->name('admin.posts.store');
+    Route::get('/admin/posts/delete/{id}', [AdminController::class, 'del_posts'])->name('admin.posts.delete');
+    Route::get('/admin/posts/edit/{id}', [AdminController::class, 'edit_posts'])->name('admin.posts.edit');
+    Route::post('/admin/posts/update/{id}', [AdminController::class, 'update_posts'])->name('admin.posts.update');
+
 
     Route::get('/admin/categories', [AdminController::class, 'categories'])->name('admin.categories');
     Route::get('/admin/categories/edit/{id}', [AdminController::class, 'edit_categories'])->name('admin.categories.edit');
